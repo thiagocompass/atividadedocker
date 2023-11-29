@@ -17,12 +17,13 @@ personalizada de ONLINE ou offline;
 para o serviço online e 1 para o serviço
 OFFLINE;
 - Preparar a execução automatizada do script a
-cada 5 minutos.
+cada 5 minutos;
 - Fazer o versionamento da atividade;
 - Fazer a documentação explicando o processo
 de instalação do Linux.
 
 **References and used materials**: [Similar Git Project](https://github.com/alexlsilva7/atividade_aws_linux/blob/main/README.md), [Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Amazon Linux 2 Documentation](https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/amazon-linux-2-virtual-machine.html), [NFS Documentation](http://l.github.io/debian-handbook/html/pt-BR/sect.nfs-file-server.html)
+
 ---
 
 ## Linux Configuration Steps
@@ -73,8 +74,8 @@ echo "Date and hour: $CURRENT_DATE" > "/srv/thiago/$OUTPUT_FILE"
 echo "Service name: Apache" >> "/srv/thiago/$OUTPUT_FILE"
 echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
 ~~~
-- Salve the file using CONTROL + O
-- To turn the file an executable file, write `chmod +x script.sh` 
+- Salve the file using CONTROL + O;
+- To turn the file an executable file, write `chmod +x script.sh`; 
 - To run the script`./script.sh`. 
 
 ### To set up the automatic execution to 5 in 5 minutes.
@@ -112,10 +113,10 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
     [Install]
     WantedBy=multi-user.target
     ```
-- Save the file.
-- Reload systemd, write `sudo systemctl daemon-reload`.
-- Start the service `sudo systemctl start validate_apache`.
-- Enable it to start automatically  `sudo systemctl enable validate_apache`.
+- Save the file;
+- Reload systemd, write `sudo systemctl daemon-reload`.];
+- Start the service `sudo systemctl start validate_apache`;
+- Enable it to start automatically  `sudo systemctl enable validate_apache`;
 - Verify the service status using `sudo systemctl status validate_apache`.
 
 ### Now add the timer to systemd.
@@ -133,10 +134,10 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
     [Install]
     WantedBy=multi-user.target
     ```
-- Salve the file.
-- Reload systems again `sudo systemctl daemon-reload`.
-- To start the timer enter `sudo systemctl start validate_apache.timer`.
-- Enable this server to start automatically `sudo systemctl enable validate_apache.timer`.
+- Salve the file;
+- Reload systems again `sudo systemctl daemon-reload`;
+- To start the timer enter `sudo systemctl start validate_apache.timer`;
+- Enable this server to start automatically `sudo systemctl enable validate_apache.timer`;
 - To verify the service status, write `sudo systemctl status validate_apache.timer`.
 
 </details>
