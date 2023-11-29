@@ -51,9 +51,9 @@ de instalação do Linux.
 
 - Create a new file named `nano script.sh`, you may put it inside of /yourname/.
 - The script: 
-   `#!/bin/bash`
+   /#!/bin/bash<br />
 
-`# Script to verify the Apache's state and save this data`
+/# Script to verify the Apache's state and save this data</br >
 if systemctl is-active --quiet httpd; then
     STATUS="Online"
     MESSAGE="The Apache service is working!"
@@ -64,10 +64,10 @@ else
     OUTPUT_FILE="apache_offline_status.txt"
 fi
 
-`# Take the curret date and hour`
+/# Take the curret date and hour
 CURRENT_DATE=$(date +"%d/%m/%Y %H:%M:%S")
 
-# To salve the data
+/# To salve the data
 echo "Date and hour: $CURRENT_DATE" > "/srv/thiago/$OUTPUT_FILE"
 echo "Service name: Apache" >> "/srv/thiago/$OUTPUT_FILE"
 echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
