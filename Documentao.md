@@ -92,3 +92,52 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
     ```
 - Salve the file.
 - To verify if it’s working, write `crontab -l`.
+</details>
+<details>
+<summary>By Systemd (more complex)</summary>
+
+### To configure the systemd service.
+- Create a new file `sudo nano /etc/systemd/system/validate_apache.service`.
+- Add this code in validate_apache.service:
+    ```bash
+    [Unit]
+    Description=Validate apache service
+    
+    [Service]
+    Type=simple
+    ExecStart=/home/ec2-user/script.sh
+    Restart=on-failure
+    RestartSec=5
+    
+    [Install]
+    WantedBy=multi-user.target
+    ```
+- Save the file.
+- Reload systemd, write `sudo systemctl daemon-reload`.
+- Start the service `sudo systemctl start validate_apache`.
+- Enable it to start automatically  `sudo systemctl enable validate_apache`.
+- Verify the service status using `sudo systemctl status validate_apache`.
+
+### Now add the timer to systemd.
+- Create a new file `sudo nano /etc/systemd/system/validate_apache.timer`.
+- Add this code in validate_apache.timer:
+    ```bash
+    [Unit]
+    Description=Validate apache timer
+    
+    [Timer]
+    OnBootSec=5min
+    OnUnitActiveSec=5min
+    Unit=validate_apache.service
+
+    [Install]
+    WantedBy=multi-user.target
+    ```
+- Salve the file.
+- Reload systems again `sudo systemctl daemon-reload`.
+- To start the timer enter `sudo systemctl start validate_apache.timer`.
+- Enable this server to start automatically `sudo systemctl enable validate_apache.timer`.
+- To verify the service status, write `sudo systemctl status validate_apache.timer`.
+
+</details>
+
