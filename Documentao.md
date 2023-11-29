@@ -38,3 +38,40 @@ de instalação do Linux.
 - Give permissions to nfsnobody user write the in /srv/yourname, `chown nfsnobody:nfsnobody share/`;
 - Set up the exports file, access `nano /etc/exports`. Inside write `/srv/share 0.0.0.0/0(rw:all_squash)`, the IP is the client instance. To finish, export the file `exportfs -rva`;
 
+### To set up Apache.
+
+- Write the command  `sudo yum update -y` to update the system;
+- Install apache `sudo yum install httpd -y`;
+- Start apache `sudo systemctl start httpd`;
+- Enable apache to start automatically `sudo systemctl enable httpd`;
+- To verify the service status `sudo systemctl status httpd`;
+- If you want to stop apache use `sudo systemctl stop httpd`.
+
+### Creating the validation script
+
+- Create a new file named `nano script.sh`, you may put it inside of /yourname/.
+- The script: 
+   `#!/bin/bash`
+
+`# Script to verify the Apache's state and save this data`
+if systemctl is-active --quiet httpd; then
+    STATUS="Online"
+    MESSAGE="The Apache service is working!"
+    OUTPUT_FILE="apache_online_status.txt"
+else
+    STATUS="Offline"
+    MESSAGE="The Apache service isn't working :/"
+    OUTPUT_FILE="apache_offline_status.txt"
+fi
+
+`# Take the curret date and hour`
+CURRENT_DATE=$(date +"%d/%m/%Y %H:%M:%S")
+
+# To salve the data
+echo "Date and hour: $CURRENT_DATE" > "/srv/thiago/$OUTPUT_FILE"
+echo "Service name: Apache" >> "/srv/thiago/$OUTPUT_FILE"
+echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
+
+- Salve the file using CONTROL + O
+- To turn the file an executable file, write `chmod +x script.sh` 
+- To run the script`./script.sh`. 
