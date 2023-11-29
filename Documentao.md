@@ -22,7 +22,7 @@ cada 5 minutos.
 - Fazer a documentação explicando o processo
 de instalação do Linux.
 
-**References and used materials**: [Similar Git Project](https://github.com/alexlsilva7/atividade_aws_linux/blob/main/README.md), [Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Amazon Linux 2 Documentation](https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/amazon-linux-2-virtual-machine.html), [NFS Documentation](http://l.github.io/debian-handbook/html/pt-BR/sect.nfs-file-server.html).
+**References and used materials**: [Similar Git Project](https://github.com/alexlsilva7/atividade_aws_linux/blob/main/README.md), [Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Amazon Linux 2 Documentation](https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/amazon-linux-2-virtual-machine.html), [NFS Documentation](http://l.github.io/debian-handbook/html/pt-BR/sect.nfs-file-server.html)
 ---
 
 ## Linux Configuration Steps
@@ -76,3 +76,19 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
 - Salve the file using CONTROL + O
 - To turn the file an executable file, write `chmod +x script.sh` 
 - To run the script`./script.sh`. 
+
+### To set up the automatic execution to 5 in 5 minutes.
+
+#### There are two different ways
+<details>
+<summary>Contrab(more easy)</summary>
+
+### To configure the crontab
+
+- Edit the file `cronjob`.
+- Write in crontab:
+    ```bash
+    */5 * * * * /your/script/path/script.sh
+    ```
+- Salve the file.
+- To verify if it’s working, write `crontab -l`.
