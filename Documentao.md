@@ -29,15 +29,15 @@ de instalação do Linux.
 ## Linux Configuration Steps
 
 
-### Setup the NFS (only the server side)
+### To set up the NFS (only the server side
 
 - Install the firewall package `sudo yum install firewall`;
 - To keep the NFS service working through the firewall `firewall-cmd —add-service-nfs —permanent` and `firewall-cmd —reload`;
 - Start the NFS service `sudo systemctl start nfs-server`;
 - Enable the NFS service `sudo systemctl enable nfs-server`;
 - Create a new directory to NFS, ex. `sudo mkdir /srv/yourname`;
-- Give permissions to nfsnobody user write the in /srv/yourname, `chown nfsnobody:nfsnobody share/`;
-- Set up the exports file, access `nano /etc/exports`. Inside write `/srv/share 0.0.0.0/0(rw:all_squash)`, the IP is the client instance. To finish, export the file `exportfs -rva`;
+- Give permissions to nfsnobody user write in /srv/yourname, `chown nfsnobody:nfsnobody share/`;
+- Set up the exports file, access `nano /etc/exports`. Inside, write `/srv/share 0.0.0.0/0(rw:all_squash)`, the IP is from the client instance. To finish, export the file `exportfs -rva`;
 
 ### To set up Apache.
 
@@ -114,7 +114,7 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
     WantedBy=multi-user.target
     ```
 - Save the file;
-- Reload systemd, write `sudo systemctl daemon-reload`.];
+- Reload systemd, write `sudo systemctl daemon-reload`;
 - Start the service `sudo systemctl start validate_apache`;
 - Enable it to start automatically  `sudo systemctl enable validate_apache`;
 - Verify the service status using `sudo systemctl status validate_apache`.
@@ -135,7 +135,7 @@ echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
     WantedBy=multi-user.target
     ```
 - Salve the file;
-- Reload systems again `sudo systemctl daemon-reload`;
+- Reload systemd again `sudo systemctl daemon-reload`;
 - To start the timer enter `sudo systemctl start validate_apache.timer`;
 - Enable this server to start automatically `sudo systemctl enable validate_apache.timer`;
 - To verify the service status, write `sudo systemctl status validate_apache.timer`.
