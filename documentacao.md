@@ -24,57 +24,49 @@ Criar documentação.
 
 ---
 
-## Linux Configuration Steps
+## Instances Configuration
 
 
-### To set up the NFS (only the server side
+### Properties
 
-- Install the firewall package `sudo yum install firewall`;
-- To keep the NFS service working through the firewall `firewall-cmd —add-service-nfs —permanent` and `firewall-cmd —reload`;
-- Start the NFS service `sudo systemctl start nfs-server`;
-- Enable the NFS service `sudo systemctl enable nfs-server`;
-- Create a new directory to NFS, ex. `sudo mkdir /srv/yourname`;
-- Give permissions to nfsnobody user write in /srv/yourname, `chown nfsnobody:nfsnobody share/`;
-- Set up the exports file, access `nano /etc/exports`. Inside, write `/srv/share 0.0.0.0/0(rw:all_squash)`, the IP is from the client instance. To finish, export the file `exportfs -rva`;
+- 
 
-### To set up Apache.
+### Using User data (Start Instance Script) to install docker
 
-- Write the command  `sudo yum update -y` to update the system;
-- Install apache `sudo yum install httpd -y`;
-- Start apache `sudo systemctl start httpd`;
-- Enable apache to start automatically `sudo systemctl enable httpd`;
-- To verify the service status `sudo systemctl status httpd`;
-- If you want to stop apache use `sudo systemctl stop httpd`.
+- Use the following code to automatically install docker in the instance:
+  ~~~bash
+    #!/bin/bash
+
+    # Update repositories
+    sudo apt-get update
+    
+    # Install packages allowing apt to use repositories over HTTPS
+    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
+    
+    # Add Docker's official GPG key
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+    
+    # Add Docker repository to apt
+    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+    
+    # Update repositories again after adding Docker repository
+    sudo apt-get update
+    
+    # Install the latest version of Docker Engine
+    sudo apt-get install -y docker-ce
+    
+    # Add the current user to the docker group to run docker commands without sudo
+    sudo usermod -aG docker $USER
+    
+    # Enable and start the Docker service
+    sudo systemctl enable docker
+    sudo systemctl start docker
+  ~~~
 
 ### Creating the validation script
 
 - Create a new file named `nano script.sh`, you may put it inside of /yourname/.
 - The script: 
-~~~php   
-#!/bin/bash
-
-# Script to verify the Apache's state and save this data
-if systemctl is-active --quiet httpd; then
-    STATUS="Online"
-    MESSAGE="The Apache service is working!"
-    OUTPUT_FILE="apache_online_status.txt"
-else
-    STATUS="Offline"
-    MESSAGE="The Apache service isn't working :/"
-    OUTPUT_FILE="apache_offline_status.txt"
-fi
-
-# Take the curret date and hour
-CURRENT_DATE=$(date +"%d/%m/%Y %H:%M:%S")
-
-# To salve the data
-echo "Date and hour: $CURRENT_DATE" > "/srv/thiago/$OUTPUT_FILE"
-echo "Service name: Apache" >> "/srv/thiago/$OUTPUT_FILE"
-echo "Status: $MESSAGE" >> "/srv/thiago/$OUTPUT_FILE"
-~~~
-- Salve the file using CONTROL + O;
-- To turn the file an executable file, write `chmod +x script.sh`; 
-- To run the script`./script.sh`. 
 
 ### To set up the automatic execution to 5 in 5 minutes.
 
