@@ -1,26 +1,24 @@
-# Linux Activity - PB Compass Oul
+# Docker Activity - PB Compass Oul
 
-**Activity instructions**:
+**Activity description**:
 
-- Configurar o NFS entregue;
-- Criar um diretorio dentro do filesystem do
-NFS com seu nome;
-- Subir um apache no servidor, o apache deve
-estar online e rodando;
-- Criar um script que valide se o serviço esta
-online e envie o resultado da validação para
-o seu diretorio no nfs;
-- O script deve conter, Data HORA + nome
-do serviço + Status + mensagem
-personalizada de ONLINE ou offline;
-- O script deve gerar 2 arquivos de saida: 1
-para o serviço online e 1 para o serviço
-OFFLINE;
-- Preparar a execução automatizada do script a
-cada 5 minutos;
-- Fazer o versionamento da atividade;
-- Fazer a documentação explicando o processo
-de instalação do Linux.
+1. instalação e configuração do DOCKER ou CONTAINERD no host EC2;
+Ponto adicional para o trabalho utilizar a instalação via script de Start Instance
+(user_data.sh)
+2. Efetuar Deploy de uma aplicação Wordpress com:
+    container de aplicação
+    RDS database Mysql
+3. configuração da utilização do serviço EFS AWS para estáticos do container de aplicação Wordpress
+4. configuração do serviço de Load Balancer AWS para a aplicação Wordpress
+Pontos de atenção:
+não utilizar ip público para saída do serviços WP (Evitem publicar o serviço WP via IP Público)
+sugestão para o tráfego de internet sair pelo LB (Load Balancer Classic)
+pastas públicas e estáticos do wordpress sugestão de utilizar o EFS (Elastic File Sistem)
+Fica a critério de cada integrante (ou dupla) usar Dockerfile ou Dockercompose;
+Necessário demonstrar a aplicação wordpress funcionando (tela de login)
+Aplicação Wordpress precisa estar rodando na porta 80 ou 8080;
+Utilizar repositório git para versionamento;
+Criar documentação.
 
 **References and used materials**: [Similar Git Project](https://github.com/alexlsilva7/atividade_aws_linux/blob/main/README.md), [Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Amazon Linux 2 Documentation](https://docs.aws.amazon.com/pt_br/AWSEC2/latest/UserGuide/amazon-linux-2-virtual-machine.html), [NFS Documentation](http://l.github.io/debian-handbook/html/pt-BR/sect.nfs-file-server.html)
 
