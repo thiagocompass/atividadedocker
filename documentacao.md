@@ -53,7 +53,7 @@ Criar documentação.
     sudo systemctl enable docker
   ~~~
 
-I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, so I did it manually using the following commands:
+- I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, so I did it manually using the following commands:
 
 ~~~bash
     sudo yum update -y
@@ -64,8 +64,8 @@ I had tested this script before and it worked, but unfortunately when I created 
     sudo systemctl enable docker
     sudo docker --version
 ~~~
-So, I get this error:
-    ~~~bash
+- So, I get this error:
+~~~bash
   - Status code: 404 for https://download.docker.com/linux/centos/2023.3.20231218/x86_64/stable/repodata/repomd.xml (IP: 13.32.151.28)
     Error: Failed to download metadata for repo 'docker-ce-stable': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried
     Ignoring repositories: docker-ce-stable
@@ -74,7 +74,7 @@ So, I get this error:
     No match for argument: docker-ce-cli
     No match for argument: containerd.io
     Error: Unable to find a match: docker-ce docker-ce-cli containerd.io
-    ~~~
+~~~
 
 And I solved by doing this:
 
