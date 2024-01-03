@@ -38,29 +38,20 @@ Criar documentação.
     #!/bin/bash
 
     # Update repositories
-    sudo apt-get update
-    
-    # Install packages allowing apt to use repositories over HTTPS
-    sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common
-    
-    # Add Docker's official GPG key
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-    
-    # Add Docker repository to apt
-    sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-    
-    # Update repositories again after adding Docker repository
-    sudo apt-get update
-    
-    # Install the latest version of Docker Engine
-    sudo apt-get install -y docker-ce
-    
-    # Add the current user to the docker group to run docker commands without sudo
-    sudo usermod -aG docker $USER
-    
-    # Enable and start the Docker service
+    sudo yum update -y
+
+    # Install Docker
+    sudo amazon-linux-extras install docker -y
+
+    # Start Docker service
+    sudo service docker start
+
+    # Add ec2-user to the docker group
+    sudo usermod -aG docker ec2-user
+
+    # Enable Docker service to start on boot
     sudo systemctl enable docker
-    sudo systemctl start docker
+
   ~~~
 
 ### Creating the validation script
