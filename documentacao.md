@@ -76,9 +76,9 @@ Criar documentação.
     Error: Unable to find a match: docker-ce docker-ce-cli containerd.io
 ~~~
 
-And I solved by doing this:
+- And I solved by doing this:
 
-    ~~~bash
+  ~~~bash
     sudo nano /etc/yum.repos.d/docker-ce.repo
 
     [docker-ce-stable]
@@ -87,7 +87,7 @@ And I solved by doing this:
     enabled=1
     gpgcheck=1
     gpgkey=https://download.docker.com/linux/centos/gpg
-    
+  ~~~  
 ### Creating the validation script
 
 - Create a new file named `nano script.sh`, you may put it inside of /yourname/.
