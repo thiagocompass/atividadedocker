@@ -63,6 +63,7 @@ Criar documentação.
         sudo systemctl start docker
         sudo systemctl enable docker
         sudo docker --version
+        sudo reboot
     ~~~
 - So, I get this error:
     ~~~bash
