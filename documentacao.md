@@ -20,7 +20,7 @@ Aplicação Wordpress precisa estar rodando na porta 80 ou 8080;
 Utilizar repositório git para versionamento;
 Criar documentação.
 
-**References and used materials**:[Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Docker Documentation](https://docs.docker.com/engine/reference/run/), [EFS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html), [RDS(Using MySQL DB)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html), [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html)
+**References and used materials**:[Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Docker Documentation](https://docs.docker.com/engine/reference/run/), [EFS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html), [RDS(Using MySQL DB)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html), [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html), [Tutorial Video](https://www.youtube.com/watch?v=jUf622GXi_E)
 
 ---
 
