@@ -53,7 +53,7 @@ Criar documentação.
     sudo systemctl enable docker
   ~~~
 
-- I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, so I did it manually using the following commands:
+- I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, because I didn't wait the correct time for all the script finish the configuration. So I did it manually using the following commands:
 
     ~~~bash
         sudo yum update -y
