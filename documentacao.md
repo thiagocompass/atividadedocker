@@ -35,22 +35,22 @@ Criar documentação.
 
 - Use the following code to automatically install docker in the instance:
   ~~~bash
-    #!/bin/bash
+  #!/bin/bash
 
-    # Update repositories
-    sudo yum update -y
+  # Update repositories
+  sudo yum update -y
 
-    # Install Docker
-    sudo amazon-linux-extras install docker -y
+  # Install Docker
+  sudo amazon-linux-extras install docker -y
 
-    # Start Docker service
-    sudo service docker start
+  # Start Docker service
+  sudo service docker start
 
-    # Add ec2-user to the docker group
-    sudo usermod -aG docker ec2-user
+  # Add ec2-user to the docker group
+  sudo usermod -aG docker ec2-user
 
-    # Enable Docker service to start on boot
-    sudo systemctl enable docker
+  # Enable Docker service to start on boot
+  sudo systemctl enable docker
   ~~~
 
 - I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, because I didn't wait the correct time for all the script finish the configuration. So I did it manually using the following commands:
