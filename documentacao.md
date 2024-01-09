@@ -94,7 +94,7 @@ Criar documentação.
     gpgkey=https://download.docker.com/linux/centos/gpg
   ~~~  
 ### The docker-compose file
-~~~bash
+    ~~~bash
     version: '3.7'
     services:
       wordpress:
