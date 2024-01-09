@@ -93,11 +93,24 @@ Criar documentação.
     gpgcheck=1
     gpgkey=https://download.docker.com/linux/centos/gpg
   ~~~  
-### Creating the validation script
-
-- Create a new file named `nano script.sh`, you may put it inside of /yourname/.
-- The script: 
-
+### The docker-compose file
+~~~bash
+    version: '3.7'
+    services:
+      wordpress:
+        image:wordpress
+        volumes:
+          -	/efs/website:/var/www/html
+        ports:
+          -	"80:80"
+        restart: always
+        environment:
+          WORDPRESS_DB_HOST: wordpress.cjfqd8ykwxpe.us-east-1.rds.amazonaws.com
+          WORDPRESS_DB_USER: Admin    
+          WORDPRESS_DB_PASSWORD: Popcap123
+          WORDPRESS_DB_NAME: wordpress
+          WORDPRESS_TABLE_CONFIG: wp_
+~~~
 ### To set up the automatic execution to 5 in 5 minutes.
 
 #### There are two different ways
