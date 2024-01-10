@@ -120,24 +120,26 @@ Criar documentação.
       WORDPRESS_DB_NAME: wordpress
    ~~~
 - Pay attention to details like: the DB endpoint end credentials, the wordpress directory path and the ports.
-### To set up the automatic execution to 5 in 5 minutes.
+- Up your container, if all is right it might work, use the code:
+  ~~~bash
+  docker-compose.yml
+  ~~~
+  
+### This part I didn't achive
 
-#### There are two different ways
+#### Configure the Load Balancer and Auto Scaling group
 <details>
-<summary>Contrab(more easy)</summary>
+<summary>Set up the Load Balancer</summary>
 
-### To configure the crontab
+### Create the Laod Balancer
 
-- Edit the file `cronjob`.
-- Write in crontab:
-    ```bash
-    */5 * * * * /your/script/path/script.sh
-    ```
-- Salve the file.
-- To verify if it’s working, write `crontab -l`.
+- Select the Application Load Balancer;
+- Set a name, a VPC(it needs to be the same as the instance)
+- Create a new target group and select your instance
+- If you did all right, try to acess your instance using the load balancer DNS, it might work
 </details>
 <details>
-<summary>By Systemd (more complex)</summary>
+<summary> Set up the Auto Scaling Group </summary>
 
 ### To configure the systemd service.
 - Create a new file `sudo nano /etc/systemd/system/validate_apache.service`.
