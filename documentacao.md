@@ -74,10 +74,10 @@ Criar documentação.
   ~~~
 
 ### 1.3 Create the RDS
-    Open the console, create your RDS in the same VPC as the subnet.
-    Select the option to link to a compute resource, and select your EC2 instance.
-    Set up the DB inicial name and password.
-    Don't forget to check if the SGs across the instance and RDS are corretcly setted up.
+Open the console, create your RDS in the same VPC as the subnet.
+Select the option to link to a compute resource, and select your EC2 instance.
+Set up the DB inicial name and password.
+Don't forget to check if the SGs across the instance and RDS are corretcly setted up.
 
 ### 1.4 Create the EFS 
     
