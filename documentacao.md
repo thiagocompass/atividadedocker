@@ -106,11 +106,11 @@ Criar documentação.
         restart: always
         environment:
           WORDPRESS_DB_HOST: wordpress.cjfqd8ykwxpe.us-east-1.rds.amazonaws.com
-          WORDPRESS_DB_USER: Admin    
+          WORDPRESS_DB_USER: wordpress    
           WORDPRESS_DB_PASSWORD: Popcap123
-          WORDPRESS_DB_NAME: wordpress
+          WORDPRESS_DB_NAME: db-ami-docker
           WORDPRESS_TABLE_CONFIG: wp_
-~~~
+    ~~~
 ### To set up the automatic execution to 5 in 5 minutes.
 
 #### There are two different ways
