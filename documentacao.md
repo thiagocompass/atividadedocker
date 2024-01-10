@@ -105,7 +105,7 @@ Criar documentação.
           -	"80:80"
         restart: always
         environment:
-          WORDPRESS_DB_HOST: wordpress.cjfqd8ykwxpe.us-east-1.rds.amazonaws.com
+          WORDPRESS_DB_HOST: db-ami-docker.cjfqd8ykwxpe.us-east-1.rds.amazonaws.com
           WORDPRESS_DB_USER: wordpress    
           WORDPRESS_DB_PASSWORD: Popcap123
           WORDPRESS_DB_NAME: db-ami-docker
