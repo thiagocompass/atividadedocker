@@ -27,11 +27,11 @@ Criar documentação.
 ## Instances Configuration
 
 
-### Properties
+### Instance properties
 
 - t3.small, 8gb
 
-### Using User data (Start Instance Script) to install docker
+### 1.1 Using User data (Start Instance Script) to install docker
 
 - Use the following code to automatically install docker in the instance:
   ~~~bash
@@ -57,42 +57,9 @@ Criar documentação.
     sudo reboot
   ~~~
 
-- I had tested this script before and it worked, but unfortunately when I created the instance to make an AMI for the autoscaling group it didn't work, because I didn't wait the correct time for all the script finish the configuration. So I did it manually using the following commands:
+### 1.2 Using User data (Start Instance Script) to install docker
 
-    ~~~bash
-        sudo yum update -y
-        sudo yum install -y yum-utils device-mapper-persistent-data lvm2
-        sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-        sudo yum install docker-ce docker-ce-cli containerd.io
-        sudo systemctl start docker
-        sudo systemctl enable docker
-        sudo docker --version
-        sudo reboot
-    ~~~
-- So, I get this error:
-    ~~~bash
-       Status code: 404 for https://download.docker.com/linux/centos/2023.3.20231218/x86_64/stable/repodata/repomd.xml (IP: 13.32.151.28)
-        Error: Failed to download metadata for repo 'docker-ce-stable': Cannot download repomd.xml: Cannot download repodata/repomd.xml: All mirrors were tried
-        Ignoring repositories: docker-ce-stable
-        Last metadata expiration check: 0:00:42 ago on Wed Jan  3 14:43:37 2024.
-        No match for argument: docker-ce
-        No match for argument: docker-ce-cli
-        No match for argument: containerd.io
-        Error: Unable to find a match: docker-ce docker-ce-cli containerd.io
-    ~~~
 
-- And I solved by doing this:
-
-  ~~~bash
-    sudo nano /etc/yum.repos.d/docker-ce.repo
-
-    [docker-ce-stable]
-    name=Docker CE Stable - $basearch
-    baseurl=https://download.docker.com/linux/centos/7/$basearch/stable
-    enabled=1
-    gpgcheck=1
-    gpgkey=https://download.docker.com/linux/centos/gpg
-  ~~~  
 ### The docker-compose file
     ~~~bash
     version: '3.7'
