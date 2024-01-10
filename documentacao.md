@@ -29,7 +29,7 @@ Criar documentação.
 
 ### Properties
 
-- 
+- t3.small, 8gb
 
 ### Using User data (Start Instance Script) to install docker
 
