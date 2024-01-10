@@ -34,6 +34,7 @@ Criar documentação.
 ### 1.1 Using User data (Start Instance Script) to install docker
 
 - Use the following code to automatically install docker in the instance:
+- Wait 5 minutes before connecting to the instance, it needs to finish all the installation process
     ~~~bash
         #!/bin/bash
     
@@ -83,7 +84,17 @@ Set up the DB inicial name and password.
 Don't forget to check if the SGs across the instance and RDS are corretcly setted up.
 
 ### 1.4 Create the EFS 
-    
+Open the console, create your EFS.
+
+Remember to set the correct subnets, your instance subnet needs to be in.
+
+Check the SGs, with there are some hitch.
+
+Mount the EFS system in your instance, use the code:
+  ~~~bash
+    sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport xxx.efs.us-east-1.amazonaws.com:/ efs
+  ~~~
+
 ### The docker-compose file
     ~~~bash
     version: '3.7'
