@@ -20,7 +20,7 @@ Aplicação Wordpress precisa estar rodando na porta 80 ou 8080;
 Utilizar repositório git para versionamento;
 Criar documentação.
 
-**References and used materials**:[Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Docker Documentation](https://docs.docker.com/engine/reference/run/), [EFS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html), [RDS(Using MySQL DB)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html), [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html), [Tutorial Video](https://www.youtube.com/watch?v=jUf622GXi_E)
+**References and used materials**:[Amazon Web Services Documentation](https://docs.aws.amazon.com/pt_br/index.html), [Docker Documentation](https://docs.docker.com/engine/reference/run/), [EFS Documentation](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEFS.html), [RDS(Using MySQL DB)](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.MySQL.html), [Elastic Load Balancer Documentation](https://docs.aws.amazon.com/elasticloadbalancing/latest/userguide/what-is-load-balancing.html), [Tutorial Video](https://www.youtube.com/watch?v=jUf622GXi_E), [Docker Compose Instalation](https://www.digitalocean.com/community/tutorials/como-instalar-e-usar-o-docker-compose-no-centos-7-pt)
 
 ---
 
@@ -34,30 +34,44 @@ Criar documentação.
 ### 1.1 Using User data (Start Instance Script) to install docker
 
 - Use the following code to automatically install docker in the instance:
+    ~~~bash
+        #!/bin/bash
+    
+        # Update the system
+        sudo yum update -y
+    
+        # Install Docker
+        sudo yum install -y docker
+    
+        # Start and enable Docker service
+        sudo systemctl start docker
+        sudo systemctl enable docker
+    
+        # Add the user to the "docker" group
+        sudo usermod -aG docker ec2-user
+    
+        # Configure Docker to start automatically on boot
+        sudo systemctl enable docker
+    
+        # Reboot the instance to apply the changes
+        sudo reboot
+    ~~~
+
+### 1.2 Install Docker Compose
+  To install the docker compose, use the following commands:
   ~~~bash
-    #!/bin/bash
-
-    # Update the system
-    sudo yum update -y
-
-    # Install Docker
-    sudo yum install -y docker
-
-    # Start and enable Docker service
-    sudo systemctl start docker
-    sudo systemctl enable docker
-
-    # Add the user to the "docker" group
-    sudo usermod -aG docker ec2-user
-
-    # Configure Docker to start automatically on boot
-    sudo systemctl enable docker
-
-    # Reboot the instance to apply the changes
-    sudo reboot
+    sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   ~~~
 
-### 1.2 Using User data (Start Instance Script) to install docker
+  Give the file permission 
+  ~~~bash
+    sudo chmod +x /usr/local/bin/docker-compose
+  ~~~
+
+  Check if it was installed
+  ~~~bash
+    docker-compose --version
+  ~~~
 
 
 ### The docker-compose file
