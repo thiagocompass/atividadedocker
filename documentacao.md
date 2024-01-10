@@ -119,7 +119,7 @@ Criar documentação.
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
    ~~~
-
+- Pay attention to details like: the DB endpoint end credentials, the wordpress directory path and the ports.
 ### To set up the automatic execution to 5 in 5 minutes.
 
 #### There are two different ways
