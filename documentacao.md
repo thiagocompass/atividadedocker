@@ -59,60 +59,44 @@ Criar documentação.
     ~~~
 
 ### 1.2 Install Docker Compose
-  To install the docker compose, use the following commands:
+ - To install the docker compose, use the following commands:
   ~~~bash
     sudo curl -L "https://github.com/docker/compose/releases/download/1.23.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
   ~~~
 
-  Give the file permission 
+ - Give the file permission 
   ~~~bash
     sudo chmod +x /usr/local/bin/docker-compose
   ~~~
 
-  Check if it was installed
+ - Check if it was installed
   ~~~bash
     docker-compose --version
   ~~~
 
 ### 1.3 Create the RDS
-Open the console, create your RDS in the same VPC as the subnet.
+- Open the console, create your RDS in the same VPC as the subnet.
 
-Select the option to link to a compute resource, and select your EC2 instance.
+- Select the option to link to a compute resource, and select your EC2 instance.
 
-Set up the DB inicial name and password.
+- Set up the DB inicial name and password.
 
-Don't forget to check if the SGs across the instance and RDS are corretcly setted up.
+- Don't forget to check if the SGs across the instance and RDS are corretcly setted up.
 
 ### 1.4 Create the EFS 
-Open the console, create your EFS.
+- Open the console, create your EFS.
 
-Remember to set the correct subnets, your instance subnet needs to be in.
+- Remember to set the correct subnets, your instance subnet needs to be in.
 
-Check the SGs, with there are some hitch.
+- Check the SGs, with there are some hitch.
 
-Mount the EFS system in your instance, use the code:
+- Mount the EFS system in your instance, use the code:
   ~~~bash
     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport xxx.efs.us-east-1.amazonaws.com:/ efs
   ~~~
+### 1.5 Set up the comopse file
+- 
 
-### The docker-compose file
-    ~~~bash
-    version: '3.7'
-    services:
-      wordpress:
-        image:wordpress
-        volumes:
-          -	/efs/website:/var/www/html
-        ports:
-          -	"80:80"
-        restart: always
-        environment:
-          WORDPRESS_DB_HOST: db-ami-docker.cjfqd8ykwxpe.us-east-1.rds.amazonaws.com
-          WORDPRESS_DB_USER: wordpress    
-          WORDPRESS_DB_PASSWORD: Popcap123
-          WORDPRESS_DB_NAME: db-ami-docker
-          WORDPRESS_TABLE_CONFIG: wp_
-    ~~~
 ### To set up the automatic execution to 5 in 5 minutes.
 
 #### There are two different ways
