@@ -89,13 +89,36 @@ Criar documentação.
 - Remember to set the correct subnets, your instance subnet needs to be in.
 
 - Check the SGs, with there are some hitch.
+  
+- Create a EFS directory
 
 - Mount the EFS system in your instance, use the code:
   ~~~bash
     sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport xxx.efs.us-east-1.amazonaws.com:/ efs
   ~~~
-### 1.5 Set up the comopse file
-- 
+### 1.5 Set up the compose file
+- Create a new folder inside of EFS directory.
+- Create a new file, named docker-compose.yml:
+  ~~~bash
+  sudo nano docker-compose.yml
+  ~~~
+- Paste the following code inside of it:
+  ~~~bash
+  version: '3.1'
+  services:
+  wordpress:
+    image: wordpress
+    volumes:
+      - /home/ec2-user/efs/wordpress4:/var/www/html
+    ports:
+      - 80:80
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: DB ENDPOINT
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+   ~~~
 
 ### To set up the automatic execution to 5 in 5 minutes.
 
