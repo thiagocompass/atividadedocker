@@ -125,7 +125,7 @@ Criar documentação.
   docker-compose.yml
   ~~~
   
-### This part I didn't achive
+### This part I didn't achive, due to an error that don't let me to go ahead
 
 #### Configure the Load Balancer and Auto Scaling group
 <details>
@@ -133,7 +133,7 @@ Criar documentação.
 
 ### Create the Laod Balancer
 
-- Select the Application Load Balancer;
+- Select the Application Load Balancer
 - Set a name, a VPC(it needs to be the same as the instance)
 - Create a new target group and select your instance
 - If you did all right, try to acess your instance using the load balancer DNS, it might work
@@ -141,47 +141,11 @@ Criar documentação.
 <details>
 <summary> Set up the Auto Scaling Group </summary>
 
-### To configure the systemd service.
-- Create a new file `sudo nano /etc/systemd/system/validate_apache.service`.
-- Add this code in validate_apache.service:
-    ```bash
-    [Unit]
-    Description=Validate apache service
-    
-    [Service]
-    Type=simple
-    ExecStart=/home/ec2-user/script.sh
-    Restart=on-failure
-    RestartSec=5
-    
-    [Install]
-    WantedBy=multi-user.target
-    ```
-- Save the file;
-- Reload systemd, write `sudo systemctl daemon-reload`;
-- Start the service `sudo systemctl start validate_apache`;
-- Enable it to start automatically  `sudo systemctl enable validate_apache`;
-- Verify the service status using `sudo systemctl status validate_apache`.
-
-### Now add the timer to systemd.
-- Create a new file `sudo nano /etc/systemd/system/validate_apache.timer`.
-- Add this code in validate_apache.timer:
-    ```bash
-    [Unit]
-    Description=Validate apache timer
-    
-    [Timer]
-    OnBootSec=5min
-    OnUnitActiveSec=5min
-    Unit=validate_apache.service
-
-    [Install]
-    WantedBy=multi-user.target
-    ```
-- Salve the file;
-- Reload systemd again `sudo systemctl daemon-reload`;
-- To start the timer enter `sudo systemctl start validate_apache.timer`;
-- Enable this server to start automatically `sudo systemctl enable validate_apache.timer`;
-- To verify the service status, write `sudo systemctl status validate_apache.timer`.
-
+### To create the auto scaling group
+- Create an AMI of your instance
+- Add this AMI to a model for auto scaling group
+- Select the wished working method
+- Set the load balancer and the target groups
+- To finish, choose at minimum 2 instances and two different availability zones
+- If you did all right now you may acess the WP index screen by your load balancer DNS.
 </details>
